@@ -29,17 +29,16 @@ def whoGoesFirst():
 
 def playerLetter():
     while True:
-        playerLetter = input("please choose a letter to start the game('X'or'O')")
-        if len(playerLetter) != 1:
-            print("you can enter either 'X' or 'O'")
-        elif playerLetter not in 'XO':
-            print("you can enter either 'X' or 'O'")
+        myLetter = input("please choose a letter to start the game('X'or'O'): ").upper()
+        
+        if myLetter not in 'XO':
+            print("you can enter either 'X' or 'O'")    
         else:
             break 
-        return playerLetter
+    return myLetter
 
-def computerLetter(playerLetter):
-    if playerLetter == 'X':
+def computerLetter(thisLetter):
+    if thisLetter == 'X':
         computerLetter = 'O'
     else:
         computerLetter = 'X'
@@ -48,18 +47,16 @@ def computerLetter(playerLetter):
 
 def move():
     while True:
-        move = input("please choose a position: ")
-        if len(move) != 1:
-            print("you can enter one value at a time.")
-        elif move not in '123456789':
-            print('please enter a integer value.')
+        move = input('please enter one decimal value(1-9): ')
+        if move not in '123456789':
+            print('you can only enter one decimal value(1-9): ')
         else:
             break
-    return move
+    return int(move)
 
-def playerMove():
+def boardMove(playerLetter, playerMove):
     while True:
-        index = int(move())
+        index = playerMove
         if boardList[index] == ' ':
             boardList[index] = playerLetter
             break
@@ -69,8 +66,21 @@ gameboard(boardList)
 playerLetter = playerLetter()
 computerLetter = computerLetter(playerLetter)
 turn = whoGoesFirst()
+move_Already_Played = []
 while True:
-    playerMove()
+
+    if turn = 'player':
+            
+        while True:
+            playerMove = move()
+            if playerMove in move_Already_Played:
+                print('Move Already Played, enter a new move from 1-9')
+            else:
+                move_Already_Played.append(playerMove)
+                break
+
+    boardMove(playerLetter, playerMove)
+    gameboard(boardList)
 
 
 
