@@ -18,7 +18,7 @@ def gameboard(board):
 
 
 
-def whoGoesFirst():
+def whoGoesFirst():# decides who will go first
     turn = random.randint(0,1)
     if turn == 0:
         return 'player'
@@ -27,52 +27,52 @@ def whoGoesFirst():
     print('str(turn) + "will go first."')
 
 
-def playerLetter():
+def inputPlayerLetter():#asks to player to choose between 'X' or 'O'
     while True:
         myLetter = input("please choose a letter to start the game('X'or'O'): ").upper()
         
         if myLetter not in 'XO':
-            print("you can enter either 'X' or 'O'")    
+            print("you can enter either 'X' or 'O'")
+        elif len(myLetter) == 2:
+            print("You can choose either 'X' or 'O'")
         else:
             break 
-    return myLetter
-
-def computerLetter(thisLetter):
-    if thisLetter == 'X':
-        computerLetter = 'O'
+    
+    if myLetter == 'X':
+        return ['X', 'O']
     else:
-        computerLetter = 'X'
-    return computerLetter
+        return ['O', 'X']
+    
 
 
-def move():
+def inputPlayerMove():
     while True:
         move = input('please enter one decimal value(1-9): ')
-        if move not in '123456789':
+        if move not in ['1','2','3','4','5','6','7','8','9']:
             print('you can only enter one decimal value(1-9): ')
         else:
             break
-    return int(move)
+    return move
 
 def boardMove(playerLetter, playerMove):
     while True:
-        index = playerMove
+        index = int(playerMove)
         if boardList[index] == ' ':
             boardList[index] = playerLetter
             break
      
 
 gameboard(boardList)
-playerLetter = playerLetter()
-computerLetter = computerLetter(playerLetter)
-turn = whoGoesFirst()
+playerLetter, computerLetter = inputPlayerLetter()
+turn = 'player'#whoGoesFirst()
 move_Already_Played = []
+playerMove = ' '
 while True:
 
-    if turn = 'player':
+    if turn == 'player':
             
         while True:
-            playerMove = move()
+            playerMove = inputPlayerMove()
             if playerMove in move_Already_Played:
                 print('Move Already Played, enter a new move from 1-9')
             else:
